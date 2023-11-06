@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+ th:replace="~{base ::Layout(~{::title},~{::body})}">
+<head>
+<meta charset="ISO-8859-1">
+
+<title>Index Page</title>
+
+
+</head>
+<body>
+
+<h1 style="text-align: center;">Employee Details</h1>
+
+<th:block th:if="${session.msg}">
+	<p class="text-center text-success fs-4">[[${session.msg}]]</p>
+	<th:block th:text="${@employeeServiceImpl.removeSession()}"></th:block>
+</th:block>
+
+<div class="addbtn">
+	  <a th:href="@{addEmp}"><button type="button" class="btn btn-primary">Add  <i class="fa-solid fa-user-plus fa-lg"></i></button></a>
+
+  </div>
+
+
+<div class="item1">
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">First Name</th>
+      <th scope="col">Last Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Gender</th>
+      <th scope="col">Department Id</th>
+      <th scope="col">Created At</th>
+      <th scope="col">Updated At</th>
+      
+      <th scope="col">action</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    <tr th:each="e,c : ${ll}">
+      <!--<th scope="row">[[${c.count}]]</th> -->
+      <th scope="row">[[${e.id}]]</th>
+      <td>[[${e.firstName}]]</td>
+      <td>[[${e.lastName}]]</td>
+      <td>[[${e.email}]]</td>
+      <td>[[${e.gender}]]</td>
+      <td>[[${e.departmentId.getDepartmentId()}]]</td>
+      <td>[[${e.createdAt}]]</td>
+      <td>[[${e.updatedAt}]]</td>
+      
+     
+      <td>
+		  <a th:href="@{'editEmp/'+${e.id}}"> <button type="button" class="btn btn-primary">Edit <i class="fa-solid fa-user-pen fa-lg"></i></button></a>
+		  <a th:href="@{'deleteEmp/'+${e.id}}"><button type="button" class="btn btn-danger">Delete <i class="fa-solid fa-trash fa-lg"></i></button></a>
+	  </td>
+    </tr>
+   
+  </tbody>
+</table>
+</div>
+
+</body>
+</html>

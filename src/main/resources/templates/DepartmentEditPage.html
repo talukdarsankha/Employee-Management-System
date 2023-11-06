@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+ th:replace="~{base ::Layout(~{::title},~{::body})}">
+<head>
+<meta charset="ISO-8859-1">
+<title>Department Edit Page</title>
+</head>
+<body>
+	
+	<div class="item2">
+<h1 style="text-align: center;">Edit Department </h1>
+<th:block th:if="${session.msg}">
+	<p class="text-center text-success fs-4">[[${session.msg}]]</p>
+	<th:block th:text="${@employeeServiceImpl.removeSession()}"></th:block>
+</th:block>
+<form action="/updateDtp" method="post" >
+  
+  
+  
+  <div class="mb-3">
+	    <label for="exampleInputEmail11" class="form-label">Department Id</label>
+	    <input type="text" class="form-control" id="exampleInputEmail11" aria-describedby="emailHelp" name="departmentId" th:value="${dt.departmentId}">
+     </div>
+     <div class="mb-3">
+	    <label for="exampleInputEmail12" class="form-label">Department Name</label>
+	    <input type="text" class="form-control" id="exampleInputEmail12" aria-describedby="emailHelp" name="departmentName" th:value="${dt.departmentName}">
+     </div>
+  <button type="submit" class="btn btn-primary" id="bt1">Update</button>
+</form>
+
+
+
+</div>
+</body>
+</html>
